@@ -15,29 +15,42 @@ class Token:
             initial_state='q0',
             final_states={'q1'}
         )
-        """
+
         self.__dfa_num = DFA(
-            states={},
+            states={'q0', 'q1', 'q2', 'q3'},
             input_symbols={'d', '.'},
-            transitions={},
+            transitions={
+                'q0': {'d': 'q1', '.': 'q3'},
+                'q1': {'d': 'q1', '.': 'q2'},
+                'q2': {'d': 'q2', '.': 'q3'},
+                'q3': {'d': 'q3', '.': 'q3'}
+            },
             initial_state='q0',
-            final_states={}
+            final_states={'q1', 'q2'}
         )
         self.__dfa_op_arit = DFA(
-            states={},
+            states={'q0', 'q1', 'q2'},
             input_symbols={'+', '-', '*', '/'},
-            transitions={},
+            transitions={
+                'q0': {'+': 'q1', '-': 'q1', '*': 'q1', '/': 'q1'},
+                'q1': {'+': 'q2', '-': 'q2', '*': 'q2', '/': 'q2'},
+                'q2': {'+': 'q2', '-': 'q2', '*': 'q2', '/': 'q2'}
+            },
             initial_state='q0',
-            final_states={}
+            final_states={'q1'}
         )
         self.__dfa_op_asign = DFA(
-            states={},
+            states={'q0', 'q1', 'q2'},
             input_symbols={'='},
-            transitions={},
+            transitions={
+                'q0': {'=': 'q1'},
+                'q1': {'=': 'q2'},
+                'q2': {'=': 'q2'}
+            },
             initial_state='q0',
-            final_states={}
+            final_states={'q1'}
         )
-        """
+
 
     @property
     def value_format(self):
