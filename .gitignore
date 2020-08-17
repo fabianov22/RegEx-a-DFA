@@ -129,3 +129,5 @@ dmypy.json
 .pyre/
 
 .idea/
+.idea/RegEx-a-DFA.iml
+.idea/misc.xml
