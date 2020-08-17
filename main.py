@@ -1,5 +1,5 @@
 from automata.fa.dfa import DFA
-"""
+
 dfa = DFA(
 
     states={'q0', 'q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9'},
@@ -17,10 +17,9 @@ dfa = DFA(
         'q9': {'L': 'q10', 'd': 'q9', '.': 'q10', 'op_arit': 'q10', '=': 'q10'},
         'q10': {'L': 'q10', 'd': 'q10', '.': 'q10', 'op_arit': 'q10', '=': 'q10'}
     },
-    initial_state = 'q0',
-    final_states = {'q3', 'q4', 'q5', 'q7', 'q8', 'q9'}
+    initial_state='q0',
+    final_states={'q3', 'q4', 'q5', 'q7', 'q8', 'q9'}
 )
-"""
 
 new_string = ""
 string = input("Ingrese la entrada: ")
