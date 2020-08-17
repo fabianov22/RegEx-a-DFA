@@ -3,7 +3,7 @@ from automata.fa.dfa import DFA
 
 class Token:
     def __init__(self):
-        self.__value_format = None
+        self.__value_format = ""
         self.__dfa_id = DFA(
             states={'q0', 'q1', 'q2'},
             input_symbols={'L', 'd'},
@@ -15,6 +15,7 @@ class Token:
             initial_state='q0',
             final_states={'q1'}
         )
+        """
         self.__dfa_num = DFA(
             states={},
             input_symbols={'d', '.'},
@@ -36,6 +37,7 @@ class Token:
             initial_state='q0',
             final_states={}
         )
+        """
 
     @property
     def value_format(self):
@@ -53,7 +55,7 @@ class Token:
                 s = "d"
             elif s in "+-*/":
                 s = "op_arit"
-            self.value_format += s
+            self.__value_format += s
 
     def validate_token_id(self):
         return self.__dfa_id.accepts_input(self.value_format)
