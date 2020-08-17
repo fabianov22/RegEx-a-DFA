@@ -1,6 +1,7 @@
 from models.identify_sentence import Sentence
 from models.identity_token import Token
 if __name__ == '__main__':
+    vEntr = []
     while True:
         option = 0
         while option != 2 and option != 1:
@@ -17,6 +18,10 @@ if __name__ == '__main__':
             string = input("String de entrada > ")
             s = Token()
             s.format_string(string)
+            s.split_add_vtokens
+            s.verified_tokens
             print(s.value_format)
+            print(s.vtokens)
+
         else:
             exit()

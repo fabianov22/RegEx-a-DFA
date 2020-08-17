@@ -4,6 +4,7 @@ from automata.fa.dfa import DFA
 class Token:
     def __init__(self):
         self.__value_format = ""
+        self.__vtokens = []
         self.__dfa_id = DFA(
             states={'q0', 'q1', 'q2'},
             input_symbols={'L', 'd'},
@@ -60,6 +61,15 @@ class Token:
     def value_format(self, value):
         self.__value_format = value
 
+    #lista con cada token en formato value_format
+    def vtokens(self):
+        return self.__vtokens
+
+    #retorna la lista de tokens en formato L,d,+-,...
+    def vtokens(self, value):
+        self.__vtokens = value
+
+
     def format_string(self, value: str):
         for s in value:
             if s.isalpha():
@@ -69,6 +79,24 @@ class Token:
             elif s in "+-*/":
                 s = "op_arit"
             self.__value_format += s
+
+    #agrego al atributo lista vtokens correspondiente de la entrada en value_formato
+    def split_add_vtokens(self, value: []):
+        self.__vtokens = self.__value_format.split(" ")
+
+    #verifico para cada tokens en __vtokens si es aceptado por los dfa y su despliege
+    def verified_tokens(self, value: []):
+        for token in self.__vtokens:
+            if token.validate_token_id():
+                print(str(token)+" : <id>")
+            elif token.validate_token_num:
+                print(str(token)+" : <num>")
+            elif token.validate_token_op_arit:
+                print(str(token) + " : <op_arit>")
+            elif token.validate_token_op_asign:
+                print(str(token) + " : <op_asign>")
+            else:
+                print(str(token) + ": <unknown>")
 
     def validate_token_id(self):
         return self.__dfa_id.accepts_input(self.value_format)
