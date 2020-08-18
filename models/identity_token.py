@@ -69,8 +69,9 @@ class Token:
     def vtokens(self, value):
         self.__vtokens = value
 
-
-    def format_string(self, value: str):
+    @staticmethod
+    def format_string(value: str):
+        format_str = ""
         for s in value:
             if s.isalpha():
                 s = "L"
@@ -78,7 +79,8 @@ class Token:
                 s = "d"
             elif s in "+-*/":
                 s = "op_arit"
-            self.__value_format += s
+            format_str += s
+        return format_str
 
     #agrego al atributo lista vtokens correspondiente de la entrada en value_formato
     def split_add_vtokens(self, value: []):
@@ -101,7 +103,7 @@ class Token:
     def validate_token_id(self):
         return self.__dfa_id.accepts_input(self.value_format)
 
-    def validate_token_num(self, value: str):
+    def validate_token_num(self):
         return self.__dfa_num.accepts_input(self.value_format)
 
     def validate_token_op_arit(self):
