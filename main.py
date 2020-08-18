@@ -23,8 +23,9 @@ if __name__ == '__main__':
             cont_val = [0, 0, 0, 0]
             while len(string) != 0:
                 s.value_format = ""
-                for i in aux:
-                    s.value_format += i
+                i = 0
+                while True in val and i < len(aux):
+                    s.value_format += aux[i]
                     if s.validate_token_id() and val[0]:
                         val[0] = True
                         cont_val[0] += 1
@@ -40,17 +41,20 @@ if __name__ == '__main__':
                     if s.validate_token_op_arit() and val[2]:
                         val[2] = True
                         cont_val[2] += 1
+                        break
                     else:
                         val[2] = False
 
                     if s.validate_token_op_asign() and val[3]:
                         val[3] = True
                         cont_val[3] += 1
+                        break
                     else:
                         val[3] = False
 
                     if True in val:
                         head += 1
+                    i += 1
                 pos = cont_val.index(max(cont_val))
                 if pos == 0:
                     print(string[0:head], ": <id>")
